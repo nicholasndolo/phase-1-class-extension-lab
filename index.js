@@ -14,22 +14,26 @@ class Polygon{
             sum += side
         }
         return sum
+        //return this.array.reduce((acc, curr) => acc + curr, 0)
     }
 }
 
 class Triangle extends Polygon{
     get isValid(){
-        if(this.countSides !== 3) return;
+        if(this.countSides !== 3) return false;
         let side1 = this.array[0];
         let side2 = this.array[1];
         let side3 = this.array[2];
-         return((side1 +side2 > side3) && (side1 +side3 > side2) && (side2 +side3 > side1))
+         return((side1 + side2 > side3) && (side1 +side3 > side2) && (side2 +side3 > side1))
     }
 }
 
+const triangle = new Triangle([4, 5]);
+console.log(triangle.isValid)
+
 class Square extends Polygon{
     get isValid(){
-        if(this.countSides !== 4) return;
+        if(this.countSides !== 4) return false;
         let side1 = this.array[0];
         let side2 = this.array[1];
         let side3 = this.array[2];
@@ -37,6 +41,8 @@ class Square extends Polygon{
         return((side1 ===side2) && (side1 === side3) && (side1 == side4))
     }
     get area(){
-        return this.array[1] * this.array[1];
+        if(this.isValid) return this.array[0] ** 2;
+
+        return "Provide a valid square."
     }
 }
